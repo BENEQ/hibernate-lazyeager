@@ -2,6 +2,8 @@ package sda.hibernate.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "umowa")
@@ -9,6 +11,8 @@ public class Umowa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String uuid= UUID.randomUUID().toString();
 
     @Column
     private String tytul;
@@ -52,5 +56,16 @@ public class Umowa {
         this.dataPodpisania = dataPodpisania;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Umowa umowa = (Umowa) o;
+        return Objects.equals(uuid, umowa.uuid);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
+    }
 }
