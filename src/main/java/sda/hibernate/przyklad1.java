@@ -46,6 +46,5 @@ public class przyklad1 {
         session.flush();
         session.close();
 
-        session = HibernateUtil.getSessionFactory().openSession();
     }
 }
