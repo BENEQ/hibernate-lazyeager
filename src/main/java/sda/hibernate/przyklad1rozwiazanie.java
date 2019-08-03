@@ -16,7 +16,7 @@ public class przyklad1rozwiazanie {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        List<Klient> klienci = session.createQuery("FROM Klient k JOIN FETCH k.umowy", Klient.class).getResultList();
+            List<Klient> klienci = session.createQuery("SELECT DISTINCT k FROM Klient k JOIN FETCH k.umowy", Klient.class).getResultList();
         for (Klient klient : klienci) {
             System.out.println("Znaleziono klienta: " + klient.getImie() + " " + klient.getNazwisko());
 

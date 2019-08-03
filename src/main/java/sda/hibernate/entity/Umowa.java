@@ -14,6 +14,20 @@ public class Umowa {
 
     private String uuid= UUID.randomUUID().toString();
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Umowa umowa = (Umowa) o;
+        return uuid.equals(umowa.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
+    }
+
     @Column
     private String tytul;
     @Column
@@ -56,16 +70,4 @@ public class Umowa {
         this.dataPodpisania = dataPodpisania;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Umowa umowa = (Umowa) o;
-        return Objects.equals(uuid, umowa.uuid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
-    }
 }
