@@ -14,7 +14,7 @@ public class przyklad1rozwiazanie {
     public static void main(String[] args) {
         insertData();
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+
 
             List<Klient> klienci = session.createQuery("SELECT DISTINCT k FROM Klient k JOIN FETCH k.umowy", Klient.class).getResultList();
         for (Klient klient : klienci) {
@@ -43,7 +43,7 @@ public class przyklad1rozwiazanie {
                 session.persist(umowa);
             }
         }
-        session.flush();
+        session.getTransaction().commit();
         session.close();
 
         session = HibernateUtil.getSessionFactory().openSession();

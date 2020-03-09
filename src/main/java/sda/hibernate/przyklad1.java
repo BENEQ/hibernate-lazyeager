@@ -14,7 +14,6 @@ public class przyklad1 {
     public static void main(String[] args) {
         insertData();
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
 
         List<Klient> klienci = session.createQuery("FROM Klient", Klient.class).getResultList();
         for (Klient klient : klienci) {
@@ -43,7 +42,7 @@ public class przyklad1 {
                 session.persist(umowa);
             }
         }
-        session.flush();
+        session.getTransaction().commit();
         session.close();
 
     }
